@@ -41,10 +41,9 @@ jobs:
           go-version-file: go.mod
           cache: false
 
-      - run: go env
-
       - if: steps.restore.outputs.cache-hit != 'true'
         run: |
+          go env
           go mod download -x
           make build.operator
           go test -c ./test/envtest/
