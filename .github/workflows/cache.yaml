@@ -12,9 +12,6 @@ on:
       - 'main'
   workflow_dispatch: {}
 
-env:
-  MISE_VERBOSE: 1
-
 permissions:
   contents: read
 
