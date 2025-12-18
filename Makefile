@@ -571,7 +571,7 @@ _test.unit: gotestsum
 
 .PHONY: test.unit.standard
 test.unit.standard:
-	go test -v \
+	go test \
 	$(GOTESTFLAGS) \
 	-ldflags "$(LDFLAGS_COMMON) $(LDFLAGS)" \
 	$(UNIT_TEST_PATHS)
