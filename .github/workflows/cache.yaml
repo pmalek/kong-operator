@@ -27,13 +27,16 @@ jobs:
       - name: Set Go cache date
         run: echo "GO_CACHE_DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
 
+      - name: Set Go cache key
+        run: echo "GO_CACHE_KEY=setup-go-${{runner.arch}}-${{ runner.os }}-${{ hashFiles('go.mod') }}-${{ env.GO_CACHE_DATE }}" >> $GITHUB_ENV
+
       - uses: actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb # 5.0.1
         id: restore
         with:
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
-          key: "setup-go-${{runner.arch}}-${{ runner.os }}-${{ hashFiles('go.mod') }}-${{ env.GO_CACHE_DATE }}"
+          key: ${{ env.GO_CACHE_KEY }}
 
       - if: steps.restore.outputs.cache-hit != 'true'
         run: |
@@ -48,4 +51,4 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
-          key: "setup-go-${{runner.arch}}-${{ runner.os }}-${{ hashFiles('go.mod') }}-${{ env.GO_CACHE_DATE }}"
+          key: ${{ env.GO_CACHE_KEY }}

@@ -571,7 +571,7 @@ _test.unit: gotestsum
 
 .PHONY: test.unit.compile
 test.unit.compile:
-	go test -run _DO_NOT_MATCH_ANY_TEST_ -ldflags "$(LDFLAGS_COMMON) $(LDFLAGS)" $(UNIT_TEST_PATHS)
+	go test -v -list _DO_NOT_MATCH_ANY_TEST_ -ldflags "$(LDFLAGS_COMMON) $(LDFLAGS)" $(UNIT_TEST_PATHS)
 
 .PHONY: test.unit
 test.unit:
