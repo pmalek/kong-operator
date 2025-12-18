@@ -569,6 +569,13 @@ _test.unit: gotestsum
 		-ldflags "$(LDFLAGS_COMMON) $(LDFLAGS)" \
 		$(UNIT_TEST_PATHS)
 
+.PHONY: test.unit.standard
+test.unit.standard:
+	go test -v \
+	$(GOTESTFLAGS) \
+	-ldflags "$(LDFLAGS_COMMON) $(LDFLAGS)" \
+	$(UNIT_TEST_PATHS)
+
 .PHONY: test.unit
 test.unit:
 	@$(MAKE) _test.unit GOTESTFLAGS="$(GOTESTFLAGS)"

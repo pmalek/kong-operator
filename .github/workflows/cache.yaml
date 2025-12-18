@@ -42,8 +42,11 @@ jobs:
         run: |
           go mod download -x
           make build.operator
-          go test -c ./test/integration/ ./test/envtest/
-          make test.unit
+          go test -c ./test/envtest/
+          ./envtest.test -test.timeout 1s || true
+          go test -c ./test/integration/
+          ./integration.test -test.timeout 1s || true
+          make test.unit.standard
 
       - if: steps.restore.outputs.cache-hit != 'true'
         uses: actions/cache/save@9255dc7a253b0ccc959486e2bca901246202afeb # 5.0.1
